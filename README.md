@@ -473,14 +473,13 @@ type OrderValidationErrors = Partial<Record<keyof IOrder, string>>;
 
 ##### События изменения данных (генерируются классами моделями данных):
 
-- `products:changed` - изменение данных о продуктах
+- `products:changed` - изменение данных о товарах
 - `order:itemsChanged` - изменение массива товаров в заказе
 - `order:validationErrorsChanged` - изменение состояния ошибок валидации заказа
 
 ##### События, возникающие при взаимодействии пользователя с интерфейсом (генерируются классами, отвечающими за представление):
 
-- `product:click` - клик по продукту
-- `product:selected` - выбор продукта
+- `product:selected` - выбор товара
 - `basket:click` - клик по корзине
 - `order:itemAdd` - добавление товара в заказ
 - `order:itemDelete` - удаление товара из заказа

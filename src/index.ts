@@ -37,7 +37,6 @@ const contactFormView: ContactFormView = new ContactFormView(cloneTemplate(conta
 const successView = new SuccessView(cloneTemplate(successTemplate), { onClick: () => modalView.close() });
 
 events.on('products:changed', handleProductsChanged);
-events.on('product:click', handleProductClick);
 events.on('product:selected', handleProductSelected);
 events.on('basket:click', handleBasketClick);
 events.on('order:itemAdd', handleOrderItemAdd);
@@ -75,7 +74,7 @@ function renderBasket() {
 function handleProductsChanged(): void {
 	pageView.setProductList(productService.getProducts().map(productData => {
 		const product = new ProductView(cloneTemplate(productListTemplate), {
-			onClick: () => events.emit('product:click', productData),
+			onClick: () => productService.setSelectedProduct(productData),
 		});
 
 		return product.render({
@@ -86,10 +85,6 @@ function handleProductsChanged(): void {
 			price: productData.price,
 		});
 	}));
-}
-
-function handleProductClick(productData: IProduct): void {
-	productService.setSelectedProduct(productData);
 }
 
 function handleProductSelected(productData: IProduct): void {
